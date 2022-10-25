@@ -5,6 +5,7 @@
 
 #ifndef UNTITLED3_IMAGE_H
 #define UNTITLED3_IMAGE_H
+
 struct image {
     uint64_t width, height;
     struct pixel* data;
