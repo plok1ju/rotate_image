@@ -7,7 +7,3 @@
 #include <stdio.h> // для использования malloc
 #include "../include/bmp.h"
 
-//struct bmp_header new_header(){
-//    struct bmp_header;
-//
-//}

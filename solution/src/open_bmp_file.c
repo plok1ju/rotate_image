@@ -3,8 +3,9 @@
 //
 #include "../include/open_bmp_file.h"
 
-FILE* open_file(char* file_name, char* mode){
-    FILE *file = fopen(file_name, mode);
-    if(file){ return file;}
-    return NULL;
+enum open_status open_file(FILE** file, char* file_name, char* mode){
+    *file = fopen(file_name, mode);
+    if (file != NULL) return SUCCESS;
+    return NOT_SUCCESS;
+
 }

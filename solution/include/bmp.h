@@ -46,6 +46,7 @@ enum read_status  {
     /* коды других ошибок  */
 };
 
+
 //enum read_status from_bmp( FILE* in, struct image* img );
 
 /*  serializer   */
