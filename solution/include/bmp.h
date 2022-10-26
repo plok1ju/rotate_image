@@ -7,21 +7,11 @@
 #include  <stdint.h>
 #include <stdio.h>
 
+
 #pragma pack(push, 1) // отмена автоматического выравнивания структуры
 
 struct bmp_header // 432 бита = 54 байта - вес одного заголовка
 {
-    uint32_t biWidth; // ширина изображения
-    uint32_t biHeight; // высота изображения
-    uint16_t biBitCount; // глубина пикселей? количество бит на пиксель? wdm?
-
-    uint16_t biPlanes; // задает количество плоскостей
-    uint32_t biCompression; // позволяет узнать, хранится ли изображение в сжатом виде. Поскольку мы не собираемся работать со сжатыми BMP-файлами, необходимо проверить, имеет ли это поле значение BI_RGB (а не BI_RLE8, свидетельствующее о сжатии файла)
-    uint32_t biSizeImage; // тут хранится размер графических данных (в пикселях), может быть равно 0
-    uint32_t biXPelsPerMeter; // горизонтальное разрешение (в пикселях на метр)
-    uint32_t biYPelsPerMeter; // вертикальное разрешение (в пикселях на метр)
-    uint32_t biClrUsed; // определят кол-во используемых цветов в палитре, может быть равно 0
-    uint32_t biClrImportant; // определение кол-ва важных цветов программы
 
     uint16_t bfType; // определяет тип файла. Здесь он должен быть BM
     uint32_t bfileSize; // размер файла в байтах - не всегда true
@@ -29,14 +19,23 @@ struct bmp_header // 432 бита = 54 байта - вес одного заго
     uint32_t bOffBits; // показывает начало битового массива относительно начала файла ("от начала структуры BITMAPFILEHEADER"), который и описывает картинку.
     // чтобы гарантированно попадать на начало массива: SetFilePointer(hFile, bfh.bfOffBits, NULL, FILE_BEGIN);
     uint32_t biSize; // определяет размер структуры BITMAPINFOHEADER в байтах
-
+    uint32_t biWidth; // ширина изображения
+    uint32_t biHeight; // высота изображения
+    uint16_t biPlanes; // задает количество плоскостей
+    uint16_t biBitCount; // глубина пикселей? количество бит на пиксель? wdm?
+    uint32_t biCompression; // позволяет узнать, хранится ли изображение в сжатом виде. Поскольку мы не собираемся работать со сжатыми BMP-файлами, необходимо проверить, имеет ли это поле значение BI_RGB (а не BI_RLE8, свидетельствующее о сжатии файла)
+    uint32_t biSizeImage; // тут хранится размер графических данных (в пикселях), может быть равно 0
+    uint32_t biXPelsPerMeter; // горизонтальное разрешение (в пикселях на метр)
+    uint32_t biYPelsPerMeter; // вертикальное разрешение (в пикселях на метр)
+    uint32_t biClrUsed; // определят кол-во используемых цветов в палитре, может быть равно 0
+    uint32_t biClrImportant; // определение кол-ва важных цветов программы
 
 };
 
 #pragma pack(pop) //TODO что это?
 
 
-struct pixel { uint8_t b, g, r; }; // 24 бита = 3 байта - вес одного пикселя
+//struct pixel { uint8_t b, g, r; }; // 24 бита = 3 байта - вес одного пикселя
 
 /*  deserializer   */
 enum read_status  {
@@ -47,7 +46,7 @@ enum read_status  {
     /* коды других ошибок  */
 };
 
-enum read_status from_bmp( FILE* in, struct image* img );
+//enum read_status from_bmp( FILE* in, struct image* img );
 
 /*  serializer   */
 enum  write_status  {
@@ -56,7 +55,7 @@ enum  write_status  {
     /* коды других ошибок  */
 };
 
-enum write_status to_bmp( FILE* out, struct image const* img );
+//enum write_status to_bmp( FILE* out, struct image const* img );
 
 
 #endif //UNTITLED3_BMP_H
