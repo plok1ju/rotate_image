@@ -1,25 +1,10 @@
-#include <stdio.h>
 #include "../include/open_bmp_file.h"
 #include "../include/image.h"
 #include "../include/flip.h"
 #include "../include/bmp.h"
 
-// wts happens?
-// open input_file
-// read input_file
-// save header_input_file
-// read pic
-// close input_file
-// picture flip
-// save flip image to flip_pic
-// free pic
-// open new_file
-// create header_new_file
-// free header_input_file
-// save flip_pic to output_file
-
 int main( int argc, char** argv ) {
-    (void) argc; (void) argv; // supress 'unused parameters' warning
+    (void) argc; (void) argv;
 
     enum args_status argsStatus = count_args(argc);
     if(argsStatus){

@@ -1,7 +1,7 @@
 //
 // Created by Evdokiia Galkina on 10/24/22.
 //
-#include <stdlib.h>
+
 #include "../include/image.h"
 
 enum new_image_status new_image(uint32_t width, uint32_t height, struct image* new_image){

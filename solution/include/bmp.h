@@ -35,9 +35,6 @@ struct bmp_header // 432 бита = 54 байта - вес одного заго
 
 #pragma pack(pop) //TODO что это?
 
-
-//struct pixel { uint8_t b, g, r; }; // 24 бита = 3 байта - вес одного пикселя
-
 enum read_status from_bmp( FILE* in, struct image* img );
 
 enum read_status  {
