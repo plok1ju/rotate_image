@@ -11,7 +11,7 @@ uint32_t calculate_padding(uint32_t width);
 
 enum  args_status  {
 
-    COUNT_ARGS_OK,
+    COUNT_ARGS_OK = 0,
     FEW_ARGS,
     MANY_ARGS
 

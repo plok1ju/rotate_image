@@ -9,8 +9,8 @@ int main( int argc, char** argv ) {
         return 1;
     }
 
-    FILE *file;
-    FILE *new_file;
+    FILE *file = {0};
+    FILE *new_file = {0};
 
     char *input_file = argv[0];
     char *output_file = argv[1];
