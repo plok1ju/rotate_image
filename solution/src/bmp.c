@@ -64,6 +64,7 @@ enum write_status to_bmp(FILE* out, struct image* img){
         fwrite((img->data + j * img->width), sizeof(struct pixel) * img->width, 1, out);
         fwrite(&pad_byte, 1, padding, out);
     }
+    free_image(img);
 
     return WRITE_OK;
 

@@ -41,8 +41,6 @@ int main( int argc, char** argv ) {
         return 4;
     }
 
-    free_image(&flip_picture);
-
     fclose(new_file);
     fclose(file);
 
