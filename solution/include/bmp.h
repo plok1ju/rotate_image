@@ -4,8 +4,10 @@
 
 #ifndef UNTITLED3_BMP_H
 
-#include <stdio.h>
 #include "image.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 
 #pragma pack(push, 1) // отмена автоматического выравнивания структуры

@@ -20,7 +20,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
     if(status){
         return READ_INVALID_IMAGE;
     }
-    for (uint32_t i = 0; i < height; i++){
+    for (uint32_t i = 0; i < height; i = i + 1){
         if (!(fread((img->data + i * width), sizeof(struct pixel) * width, 1, in)))
             return READ_INVALID_BITS;
         fseek(in, padding, SEEK_CUR);
@@ -37,8 +37,8 @@ enum write_status to_bmp( FILE* out, struct image* img){
     new_header.biWidth = header.biHeight;
     new_header.biSizeImage = header.biWidth*(header.biHeight + header.biHeight*padding);
     fwrite(&new_header, sizeof(struct bmp_header), 1, out);
-    for (uint32_t i = 0; i < img->height; i++){
-        fwrite((img->data + i * img->width), sizeof(struct pixel) * img->width, 1, out);
+    for (uint32_t j = 0; j < img->height; j = j + 1){
+        fwrite((img->data + j * img->width), sizeof(struct pixel) * img->width, 1, out);
         fwrite(&pad_byte, 1, padding, out);
     }
     return WRITE_OK;
