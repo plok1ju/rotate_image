@@ -36,14 +36,11 @@ int main( int argc, char** argv ) {
 
     flip(&picture, &flip_picture);
 
-    free_image(&picture);
-
     enum write_status now_write_status = to_bmp(new_file, &flip_picture);
     if(now_write_status){
         return 4;
     }
 
-    free_image(&flip_picture);
 
     fclose(new_file);
 
