@@ -3,6 +3,7 @@
 //
 #include "../include/bmp.h"
 
+
 uint32_t calculate_padding(uint32_t width){
     return (4 - (width * 3) % 4) % 4;
 }
