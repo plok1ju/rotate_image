@@ -32,17 +32,20 @@ int main( int argc, char** argv ) {
     if(now_read_status){
         return 3;
     }
+    fclose(file);
 
     flip(&picture, &flip_picture);
 
+    free_image(&picture);
 
     enum write_status now_write_status = to_bmp(new_file, &flip_picture);
     if(now_write_status){
         return 4;
     }
 
+    free_image(&flip_picture);
+
     fclose(new_file);
-    fclose(file);
 
     return 0;
 }

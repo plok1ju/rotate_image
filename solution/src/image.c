@@ -22,5 +22,6 @@ enum new_image_status new_image(uint32_t width, uint32_t height, struct image* n
 void free_image(struct image* old_im){
 
     free(old_im->data);
+    free(old_im);
 
 }
