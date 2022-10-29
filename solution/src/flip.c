@@ -17,9 +17,7 @@ enum flip_status flip(struct image* image, struct image* flip_image){
 
         for(uint32_t j = 0; j < image->height; j++){
 
-            flip_image->data[count].b = image->data[((image->width - 1) + j * image->width) - i].b;
-            flip_image->data[count].r = image->data[((image->width - 1) + j * image->width) - i].r;
-            flip_image->data[count].g = image->data[((image->width - 1) + j * image->width) - i].g;
+            flip_image->data[count] = image->data[((image->width - 1) + j * image->width) - i];
             count = count - 1;
 
         }

@@ -22,9 +22,7 @@ int main( int argc, char** argv ) {
     struct image flip_picture = {0};
 
     file = fopen(input_file, "rb");
-    new_file = fopen(output_file, "wb");
-
-    if(!file&&new_file){
+    if(!file){
         return 2;
     }
 
@@ -34,11 +32,16 @@ int main( int argc, char** argv ) {
     }
     fclose(file);
 
+    new_file = fopen(output_file, "wb");
+    if(!new_file){
+        return 4;
+    }
+
     flip(&picture, &flip_picture);
 
     enum write_status now_write_status = to_bmp(new_file, &flip_picture);
     if(now_write_status){
-        return 4;
+        return 5;
     }
 
 

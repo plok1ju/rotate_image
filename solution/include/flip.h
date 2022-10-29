@@ -9,7 +9,7 @@
 
 enum flip_status{
 
-    SUCCESS_FLIP_IMAGE,
+    SUCCESS_FLIP_IMAGE = 0,
     FLIP_MALLOC_TROUBLE
 
 };
