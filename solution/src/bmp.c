@@ -62,6 +62,3 @@ enum open_status open_file(FILE** file, char* file_name, char* mode){
     return NOT_SUCCESS_OPEN_FILE;
 
 }
-
-
-
