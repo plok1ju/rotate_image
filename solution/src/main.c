@@ -12,8 +12,8 @@ int main( int argc, char** argv ) {
     FILE *file = NULL;
     FILE *new_file = NULL;
 
-    //char *input_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/output.bmp";
-    //char *output_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/output.bmp";
+    //char *input_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/input.bmp";
+    //char *output_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/input.bmp";
 
     char *input_file = argv[1];
     char *output_file = argv[2];

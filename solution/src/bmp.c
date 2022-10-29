@@ -45,7 +45,7 @@ enum write_status to_bmp(FILE* out, struct image* img){
     uint32_t padding, width, height, size_image, file_size;
 
     padding = calculate_padding(img->width);
-    uint8_t pad_byte = 1;
+    struct pixel pad_byte = {0, 0, 0};
     new_header = header;
     width = img->width;
     height = img->height;
