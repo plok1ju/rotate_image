@@ -8,17 +8,18 @@
 #include <stdint.h>
 
 struct image {
+
     uint64_t width, height;
     struct pixel* data;
+
 };
 
 enum new_image_status  {
+
     NEW_IMAGE_OK = 0,
     NEW_IMAGE_MALLOC_TROUBLE,
 
-    /* коды других ошибок  */
 };
-
 
 enum new_image_status new_image(uint32_t width, uint32_t height, struct image* new_image);
 

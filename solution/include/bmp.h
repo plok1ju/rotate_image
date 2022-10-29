@@ -34,9 +34,8 @@ struct bmp_header // 432 бита = 54 байта - вес одного заго
 
 #pragma pack(pop)
 
-uint32_t calculate_padding(uint32_t width);
-
 enum read_status  {
+
     READ_OK = 0,
     READ_INVALID_SIGNATURE,
     READ_INVALID_BITS,
@@ -46,6 +45,7 @@ enum read_status  {
 };
 
 enum  write_status  {
+
     WRITE_OK = 0,
     WRITE_ERROR
 
@@ -55,20 +55,4 @@ enum read_status from_bmp( FILE* in, struct image* img );
 
 enum write_status to_bmp( FILE* out, struct image* img);
 
-enum  args_status  {
-    COUNT_ARGS_OK,
-    FEW_ARGS,
-    MANY_ARGS
-
-};
-
-enum  args_status count_args(int args);
-
-enum open_status {
-    SUCCESS_OPEN_FILE,
-    NOT_SUCCESS_OPEN_FILE
-
-};
-
-enum open_status open_file(FILE** file,char* file_name, char* mode);
 #endif //UNTITLED3_BMP_H
