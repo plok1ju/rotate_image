@@ -9,17 +9,20 @@ int main( int argc, char** argv ) {
         return 1;
     }
 
-    FILE *file = {0};
-    FILE *new_file = {0};
+    FILE *file = NULL;
+    FILE *new_file = NULL;
 
-    char *input_file = argv[0];
-    char *output_file = argv[1];
+    //char *input_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/input.bmp";
+    //char *output_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/output.bmp";
+
+    char *input_file = argv[1];
+    char *output_file = argv[2];
 
     struct image picture = {0};
     struct image flip_picture = {0};
 
-    fopen(input_file, "rb");
-    fopen(output_file, "wb");
+    file = fopen(input_file, "rb");
+    new_file = fopen(output_file, "wb");
 
     enum read_status now_read_status = from_bmp(file, &picture);
     if(now_read_status){

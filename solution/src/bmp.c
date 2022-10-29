@@ -5,6 +5,12 @@
 
 static struct bmp_header header;
 
+uint32_t calculate_padding(uint32_t width){
+
+    return ( 4 - ( width * 3 ) % 4) % 4;
+
+}
+
 enum read_status from_bmp( FILE* in, struct image* img ){
 
     uint32_t padding, width, height;
@@ -13,7 +19,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
     width = header.biWidth;
     height = header.biHeight;
-    padding = calculate_padding(img->width);
+    padding = calculate_padding(width);
 
     enum new_image_status now_image_status = new_image(width, height, img);
     if(now_image_status){
@@ -33,16 +39,24 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
 }
 
-enum write_status to_bmp( FILE* out, struct image* img){
+enum write_status to_bmp(FILE* out, struct image* img){
 
     struct bmp_header new_header;
-    uint32_t padding = calculate_padding(img->width);
+    uint32_t padding, width, height, size_image, file_size;
+
+    padding = calculate_padding(img->width);
     uint8_t pad_byte = 1;
     new_header = header;
+    width = img->width;
+    height = img->height;
+    size_image = 3 * (height * width + width * padding);
+    file_size = size_image + sizeof (struct bmp_header);
 
-    new_header.biHeight = header.biWidth;
-    new_header.biWidth = header.biHeight;
-    new_header.biSizeImage = header.biWidth*(header.biHeight + header.biHeight*padding);
+    new_header.biHeight =height;
+    new_header.biWidth = width;
+    new_header.biSizeImage = size_image;
+    new_header.bfileSize = file_size;
+
 
     fwrite(&new_header, sizeof(struct bmp_header), 1, out);
 

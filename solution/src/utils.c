@@ -4,17 +4,13 @@
 
 #include "../include/utils.h"
 
-uint32_t calculate_padding(uint32_t width){
-    return (4 - (width * 3) % 4) % 4;
-}
-
 enum args_status count_args(int args){
 
-    if(args <3){
+    if( args < 3 ){
         return FEW_ARGS;
     }
 
-    else if (args > 3){
+    else if ( args > 3 ){
         return  MANY_ARGS;
     }
 

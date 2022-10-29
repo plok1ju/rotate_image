@@ -35,6 +35,8 @@ struct bmp_header // 432 бита = 54 байта - вес одного заго
 
 #pragma pack(pop)
 
+uint32_t calculate_padding(uint32_t width);
+
 enum read_status  {
 
     READ_OK = 0,
