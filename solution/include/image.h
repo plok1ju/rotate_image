@@ -6,6 +6,7 @@
 #define UNTITLED3_IMAGE_H
 
 #include <stdint.h>
+#include <stdlib.h>
 
 struct image {
 

@@ -12,7 +12,7 @@ int main( int argc, char** argv ) {
     FILE *file = NULL;
     FILE *new_file = NULL;
 
-    //char *input_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/input.bmp";
+    //char *input_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/output.bmp";
     //char *output_file = "/Users/evdokiiagalkina/CLionProjects/untitled3/assignment-image-rotation/tester/tests/1/output.bmp";
 
     char *input_file = argv[1];
@@ -35,7 +35,6 @@ int main( int argc, char** argv ) {
 
     flip(&picture, &flip_picture);
 
-    free_image(&picture);
 
     enum write_status now_write_status = to_bmp(new_file, &flip_picture);
     if(now_write_status){

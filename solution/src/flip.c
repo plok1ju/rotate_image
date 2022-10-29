@@ -24,6 +24,8 @@ enum flip_status flip(struct image* image, struct image* flip_image){
 
     }
 
+    free(image);
+
     return SUCCESS_FLIP_IMAGE;
 
 }
