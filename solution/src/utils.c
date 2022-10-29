@@ -10,11 +10,11 @@ uint32_t calculate_padding(uint32_t width){
 
 enum args_status count_args(int args){
 
-    if(args <2){
+    if(args <3){
         return FEW_ARGS;
     }
 
-    else if (args > 2){
+    else if (args > 3){
         return  MANY_ARGS;
     }
 
