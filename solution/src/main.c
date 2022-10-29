@@ -25,7 +25,7 @@ int main( int argc, char** argv ) {
     new_file = fopen(output_file, "wb");
 
     if(!file&&new_file){
-        return 2
+        return 2;
     }
 
     enum read_status now_read_status = from_bmp(file, &picture);
