@@ -23,7 +23,7 @@ int main( int argc, char** argv ) {
 
     enum read_status now_read_status = from_bmp(file, &picture);
     if(now_read_status){
-        return 1;
+        return 2;
     }
 
     flip(&picture, &flip_picture);
@@ -32,7 +32,7 @@ int main( int argc, char** argv ) {
 
     enum write_status now_write_status = to_bmp(new_file, &flip_picture);
     if(now_write_status){
-        return 1;
+        return 3;
     }
 
     free_image(&flip_picture);
