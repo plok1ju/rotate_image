@@ -6,6 +6,7 @@
 
 #include  <stdint.h>
 #include <stdio.h>
+#include "image.h"
 
 
 #pragma pack(push, 1) // отмена автоматического выравнивания структуры
@@ -37,26 +38,33 @@ struct bmp_header // 432 бита = 54 байта - вес одного заго
 
 //struct pixel { uint8_t b, g, r; }; // 24 бита = 3 байта - вес одного пикселя
 
-/*  deserializer   */
+enum read_status from_bmp( FILE* in, struct image* img );
+
 enum read_status  {
     READ_OK = 0,
     READ_INVALID_SIGNATURE,
     READ_INVALID_BITS,
-    READ_INVALID_HEADER
-    /* коды других ошибок  */
+    READ_INVALID_HEADER,
+    READ_INVALID_IMAGE
+
 };
 
-
-//enum read_status from_bmp( FILE* in, struct image* img );
-
-/*  serializer   */
 enum  write_status  {
     WRITE_OK = 0,
     WRITE_ERROR
-    /* коды других ошибок  */
+
 };
 
-//enum write_status to_bmp( FILE* out, struct image const* img );
+enum write_status to_bmp( FILE* out, struct image* img);
 
+enum  args_status  {
+    COUNT_ARGS_OK,
+    FEW_ARGS,
+    MANY_ARGS
 
+};
+
+enum  args_status count_args(int args);
+
+uint32_t calculate_padding(uint32_t width);
 #endif //UNTITLED3_BMP_H

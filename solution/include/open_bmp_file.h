@@ -11,8 +11,8 @@
 enum open_status open_file(FILE** file,char* file_name, char* mode);
 
 enum open_status {
-    SUCCESS,
-    NOT_SUCCESS
+    SUCCESS_OPEN_FILE,
+    NOT_SUCCESS_OPEN_FILE
 
 };
 
