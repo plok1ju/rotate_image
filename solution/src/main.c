@@ -24,9 +24,13 @@ int main( int argc, char** argv ) {
     file = fopen(input_file, "rb");
     new_file = fopen(output_file, "wb");
 
+    if(!file&&new_file){
+        return 2
+    }
+
     enum read_status now_read_status = from_bmp(file, &picture);
     if(now_read_status){
-        return 2;
+        return 3;
     }
 
     flip(&picture, &flip_picture);
@@ -35,7 +39,7 @@ int main( int argc, char** argv ) {
 
     enum write_status now_write_status = to_bmp(new_file, &flip_picture);
     if(now_write_status){
-        return 3;
+        return 4;
     }
 
     free_image(&flip_picture);
