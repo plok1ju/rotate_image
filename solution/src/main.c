@@ -1,5 +1,4 @@
 #include "../include/open_bmp_file.h"
-#include "../include/image.h"
 #include "../include/flip.h"
 #include "../include/bmp.h"
 

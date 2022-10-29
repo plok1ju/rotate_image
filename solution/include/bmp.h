@@ -4,7 +4,6 @@
 
 #ifndef UNTITLED3_BMP_H
 
-#include  <stdint.h>
 #include <stdio.h>
 #include "image.h"
 
@@ -33,9 +32,7 @@ struct bmp_header // 432 бита = 54 байта - вес одного заго
 
 };
 
-#pragma pack(pop) //TODO что это?
-
-enum read_status from_bmp( FILE* in, struct image* img );
+#pragma pack(pop)
 
 enum read_status  {
     READ_OK = 0,
@@ -51,6 +48,8 @@ enum  write_status  {
     WRITE_ERROR
 
 };
+
+enum read_status from_bmp( FILE* in, struct image* img );
 
 enum write_status to_bmp( FILE* out, struct image* img);
 
