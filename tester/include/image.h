@@ -1,8 +1,8 @@
 #pragma once
 
-#include <inttypes.h>
-#include <malloc.h>
 #include <stddef.h>
+#include <malloc.h>
+#include <inttypes.h>
 
 #include "dimensions.h"
 
