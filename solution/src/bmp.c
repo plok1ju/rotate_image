@@ -58,7 +58,6 @@ enum write_status to_bmp( FILE* out, struct image* img ){
     new_header.biSizeImage = size_image;
     new_header.bfileSize = file_size;
 
-    new_bmp_header( &new_header, img );
     fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
 
 
