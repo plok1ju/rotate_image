@@ -2,11 +2,12 @@
 #include "../include/bmp.h"
 
 int main( int argc, char** argv ) {
-    (void) argc; (void) argv;
+    ( void ) argc; ( void ) argv;
 
-    enum args_status now_args_status = count_args(argc);
-    if(now_args_status){
+    enum args_status now_args_status = count_args( argc );
+    if( now_args_status ){
         return 1;
+
     }
 
     FILE *file = NULL;
@@ -18,30 +19,35 @@ int main( int argc, char** argv ) {
     char *input_file = argv[1];
     char *output_file = argv[2];
 
-    struct image picture = {0};
-    struct image flip_picture = {0};
+    struct image picture = { 0 };
+    struct image flip_picture = { 0 };
 
-    file = fopen(input_file, "rb");
+    file = fopen( input_file, "rb" );
     if( !file ){
         return 2;
+
     }
 
-    enum read_status now_read_status = from_bmp(file, &picture);
+    enum read_status now_read_status = from_bmp( file, &picture );
     if( now_read_status ){
         return 3;
-    }
-    fclose(file);
 
-    new_file = fopen(output_file, "wb");
-    if(!new_file){
+    }
+
+    fclose( file );
+
+    new_file = fopen( output_file, "wb" );
+    if( !new_file ){
         return 2;
+
     }
 
-    flip(&picture, &flip_picture);
+    image_flip( &picture, &flip_picture );
 
-    enum write_status now_write_status = to_bmp(new_file, &flip_picture);
-    if(now_write_status){
+    enum write_status now_write_status = to_bmp( new_file, &flip_picture );
+    if( now_write_status ){
         return 5;
+
     }
 
     fclose( new_file );

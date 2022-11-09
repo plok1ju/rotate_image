@@ -15,6 +15,6 @@ enum  args_status  {
 
 };
 
-enum  args_status count_args(int args);
+enum  args_status count_args( const int args );
 
 #endif //UNTITLED3_UTILS_H

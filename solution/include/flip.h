@@ -14,6 +14,6 @@ enum flip_status{
 
 };
 
-enum flip_status flip(struct image* image, struct image* flip_image);
+enum flip_status image_flip( struct image* image, struct image* flip_image );
 
 #endif //UNTITLED3_FLIP_H

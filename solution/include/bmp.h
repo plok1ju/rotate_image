@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-#pragma pack(push, 1)
+#pragma pack( push, 1 )
 
 struct bmp_header
 {
@@ -32,9 +32,9 @@ struct bmp_header
 
 };
 
-#pragma pack(pop)
+#pragma pack( pop )
 
-uint32_t calculate_padding(uint32_t width);
+static uint32_t padding_calculate( const uint32_t width );
 
 enum read_status  {
 
@@ -55,6 +55,8 @@ enum  write_status  {
 
 enum read_status from_bmp( FILE* in, struct image* img );
 
-enum write_status to_bmp( FILE* out, struct image* img);
+void new_bmp_header( struct bmp_header* new_header, const struct image* img );
+
+enum write_status to_bmp( FILE* out, const struct image* img );
 
 #endif //UNTITLED3_BMP_H
