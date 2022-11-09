@@ -3,6 +3,9 @@
 //
 #include "../include/bmp.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreturn-stack-address"
+
 static struct bmp_header header;
 
 static uint32_t padding_calculate( const uint32_t width ){
@@ -41,24 +44,13 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
 enum write_status to_bmp( FILE* out, struct image* img ){
 
-    struct bmp_header new_header = { 0 };
     struct pixel pad_byte = { 0, 0, 0 };
 
-    uint32_t  width, height, size_image, file_size = 0;
-    uint32_t padding = padding_calculate(img->width);
 
-    new_header = header;
-    width = img->width;
-    height = img->height;
-    size_image = 3 * height * width + width * padding;
-    file_size = size_image + sizeof ( struct bmp_header );
+    uint32_t padding = padding_calculate(img->width );
 
-    new_header.biHeight = height;
-    new_header.biWidth = width;
-    new_header.biSizeImage = size_image;
-    new_header.bfileSize = file_size;
 
-    fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
+    fwrite(new_bmp_header( img ), sizeof( struct bmp_header ), 1, out );
 
 
 
@@ -75,6 +67,22 @@ enum write_status to_bmp( FILE* out, struct image* img ){
 
 }
 
-//void new_bmp_header( struct bmp_header* new_header, const struct image* img ){
-//
-//}
+struct bmp_header* new_bmp_header( const struct image* img ){
+
+    struct bmp_header new_header = header;
+
+    uint32_t padding = padding_calculate(img->width );
+    uint32_t width = img->width;
+    uint32_t height = img->height;
+    uint32_t size_image = 3 * height * width + width * padding;
+    uint32_t file_size = size_image + sizeof ( struct bmp_header );
+
+    new_header.biHeight = height;
+    new_header.biWidth = width;
+    new_header.biSizeImage = size_image;
+    new_header.bfileSize = file_size;
+
+    return &new_header;
+}
+
+#pragma clang diagnostic pop
