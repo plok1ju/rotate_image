@@ -44,10 +44,24 @@ enum write_status to_bmp( FILE* out, struct image* img ){
     struct bmp_header new_header = { 0 };
     struct pixel pad_byte = { 0, 0, 0 };
 
+    uint32_t  width, height, size_image, file_size = 0;
+    uint32_t padding = padding_calculate(img->width);
+
+    new_header = header;
+    width = img->width;
+    height = img->height;
+    size_image = 3 * height * width + width * padding;
+    file_size = size_image + sizeof ( struct bmp_header );
+
+    new_header.biHeight = height;
+    new_header.biWidth = width;
+    new_header.biSizeImage = size_image;
+    new_header.bfileSize = file_size;
+
     new_bmp_header( &new_header, img );
     fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
 
-    uint32_t padding = padding_calculate(img->width);
+
 
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
@@ -62,21 +76,6 @@ enum write_status to_bmp( FILE* out, struct image* img ){
 
 }
 
-void new_bmp_header( struct bmp_header* new_header, const struct image* img ){
-    uint32_t padding, width, height, size_image, file_size = 0;
-
-    padding = padding_calculate( img->width );
-
-
-    new_header = &header;
-    width = img->width;
-    height = img->height;
-    size_image = 3 * height * width + width * padding;
-    file_size = size_image + sizeof ( struct bmp_header );
-
-    new_header->biHeight = height;
-    new_header->biWidth = width;
-    new_header->biSizeImage = size_image;
-    new_header->bfileSize = file_size;
-
-}
+//void new_bmp_header( struct bmp_header* new_header, const struct image* img ){
+//
+//}
