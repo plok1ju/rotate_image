@@ -3,8 +3,6 @@
 //
 #include "../include/bmp.h"
 
-static struct bmp_header header;
-
 static uint32_t padding_calculate( const uint32_t width ){
 
     return ( 4 - ( width * 3 ) % 4 ) % 4;
@@ -12,6 +10,8 @@ static uint32_t padding_calculate( const uint32_t width ){
 }
 
 enum read_status from_bmp( FILE* in, struct image* img ){
+
+    static struct bmp_header header;
 
     uint32_t padding, width, height = 0;
 
@@ -43,22 +43,11 @@ enum write_status to_bmp( FILE* out, struct image* img ){
 
     struct pixel pad_byte = { 0, 0, 0 };
 
-    struct bmp_header new_header = header;
+    struct bmp_header new_header = new_bmp_header( img->height, img->width );
 
     uint32_t padding = padding_calculate(img->width );
-    uint32_t width = img->width;
-    uint32_t height = img->height;
-    uint32_t size_image = 3 * height * width + width * padding;
-    uint32_t file_size = size_image + sizeof ( struct bmp_header );
-
-    new_header.biHeight = height;
-    new_header.biWidth = width;
-    new_header.biSizeImage = size_image;
-    new_header.bfileSize = file_size;
 
     fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
-
-
 
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
@@ -73,3 +62,30 @@ enum write_status to_bmp( FILE* out, struct image* img ){
 
 }
 
+struct bmp_header new_bmp_header(uint32_t width, uint32_t height){
+
+    struct bmp_header new_header;
+    uint32_t padding = padding_calculate(width );
+
+    uint32_t size_image = 3 * height * width + width * padding;
+    uint32_t file_size = size_image + sizeof ( struct bmp_header );
+
+    new_header.biHeight = height;
+    new_header.biWidth = width;
+    new_header.biSizeImage = size_image;
+    new_header.bfileSize = file_size;
+
+    new_header.bfType = 19778;
+    new_header.bfReserved = 0;
+    new_header.bOffBits = 54;
+    new_header.biSize = 40;
+    new_header.biPlanes = 1;
+    new_header.biBitCount = 24;
+    new_header.biCompression = 0;
+    new_header.biXPelsPerMeter = 2834;
+    new_header.biYPelsPerMeter = 2834;
+    new_header.biClrUsed = 0;
+    new_header.biClrImportant = 0;
+
+    return new_header;
+}
