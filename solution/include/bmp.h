@@ -9,27 +9,26 @@
 
 #include <stdio.h>
 
-#pragma pack(push, 1) // отмена автоматического выравнивания структуры
+#pragma pack(push, 1)
 
-struct bmp_header // 432 бита = 54 байта - вес одного заголовка
+struct bmp_header
 {
 
-    uint16_t bfType; // определяет тип файла. Здесь он должен быть BM
-    uint32_t bfileSize; // размер файла в байтах - не всегда true
-    uint32_t bfReserved; // что-то что зарезирвировано нулями
-    uint32_t bOffBits; // показывает начало битового массива относительно начала файла ("от начала структуры BITMAPFILEHEADER"), который и описывает картинку.
-    // чтобы гарантированно попадать на начало массива: SetFilePointer(hFile, bfh.bfOffBits, NULL, FILE_BEGIN);
-    uint32_t biSize; // определяет размер структуры BITMAPINFOHEADER в байтах
-    uint32_t biWidth; // ширина изображения
-    uint32_t biHeight; // высота изображения
-    uint16_t biPlanes; // задает количество плоскостей
-    uint16_t biBitCount; // глубина пикселей? количество бит на пиксель? wdm?
-    uint32_t biCompression; // позволяет узнать, хранится ли изображение в сжатом виде. Поскольку мы не собираемся работать со сжатыми BMP-файлами, необходимо проверить, имеет ли это поле значение BI_RGB (а не BI_RLE8, свидетельствующее о сжатии файла)
-    uint32_t biSizeImage; // тут хранится размер графических данных (в пикселях), может быть равно 0
-    uint32_t biXPelsPerMeter; // горизонтальное разрешение (в пикселях на метр)
-    uint32_t biYPelsPerMeter; // вертикальное разрешение (в пикселях на метр)
-    uint32_t biClrUsed; // определят кол-во используемых цветов в палитре, может быть равно 0
-    uint32_t biClrImportant; // определение кол-ва важных цветов программы
+    uint16_t bfType;
+    uint32_t bfileSize;
+    uint32_t bfReserved;
+    uint32_t bOffBits;
+    uint32_t biSize;
+    uint32_t biWidth;
+    uint32_t biHeight;
+    uint16_t biPlanes;
+    uint16_t biBitCount;
+    uint32_t biCompression;
+    uint32_t biSizeImage;
+    uint32_t biXPelsPerMeter;
+    uint32_t biYPelsPerMeter;
+    uint32_t biClrUsed;
+    uint32_t biClrImportant;
 
 };
 

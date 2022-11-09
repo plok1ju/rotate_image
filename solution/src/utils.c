@@ -4,7 +4,7 @@
 
 #include "../include/utils.h"
 
-enum args_status count_args(int args){
+enum args_status count_args( int args ){
 
     if( args < 3 ){
         return FEW_ARGS;

@@ -26,6 +26,6 @@ enum new_image_status new_image(uint32_t width, uint32_t height, struct image* n
 
 void free_image(struct image* old_im);
 
-struct pixel { uint8_t b, g, r; }; // 24 бита = 3 байта - вес одного пикселя
+struct pixel { uint8_t b, g, r; };
 
 #endif //UNTITLED3_IMAGE_H

@@ -22,19 +22,19 @@ int main( int argc, char** argv ) {
     struct image flip_picture = {0};
 
     file = fopen(input_file, "rb");
-    if(!file){
+    if( !file ){
         return 2;
     }
 
     enum read_status now_read_status = from_bmp(file, &picture);
-    if(now_read_status){
+    if( now_read_status ){
         return 3;
     }
     fclose(file);
 
     new_file = fopen(output_file, "wb");
     if(!new_file){
-        return 4;
+        return 2;
     }
 
     flip(&picture, &flip_picture);
@@ -44,8 +44,7 @@ int main( int argc, char** argv ) {
         return 5;
     }
 
-
-    fclose(new_file);
+    fclose( new_file );
 
     return 0;
 }
