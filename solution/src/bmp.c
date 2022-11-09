@@ -42,14 +42,12 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 enum write_status to_bmp( FILE* out, struct image* img ){
 
     struct bmp_header new_header = { 0 };
-    uint32_t padding, width, height, size_image, file_size = 0;
-
-    padding = padding_calculate(img->width);
     struct pixel pad_byte = { 0, 0, 0 };
 
     new_bmp_header( &new_header, img );
-
     fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
+
+    uint32_t padding = padding_calculate(img->width);
 
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
