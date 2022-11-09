@@ -43,7 +43,7 @@ enum write_status to_bmp( FILE* out, struct image* img ){
 
     struct pixel pad_byte = { 0, 0, 0 };
 
-    struct bmp_header new_header = new_bmp_header( img->height, img->width );
+    struct bmp_header new_header = new_bmp_header( img->width, img->height );
 
     uint32_t padding = padding_calculate(img->width );
 
@@ -86,6 +86,7 @@ struct bmp_header new_bmp_header(uint32_t width, uint32_t height){
     new_header.biYPelsPerMeter = 2834;
     new_header.biClrUsed = 0;
     new_header.biClrImportant = 0;
+
 
     return new_header;
 }
