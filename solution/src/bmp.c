@@ -13,7 +13,7 @@ static uint32_t padding_calculate( const uint32_t width ){
 
 enum read_status from_bmp( FILE* in, struct image* img ){
 
-    uint32_t padding, width, height = { 0 };
+    uint32_t padding, width, height = 0;
 
     fread( &header, sizeof( struct bmp_header ), 1, in );
 
@@ -39,10 +39,10 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
 }
 
-enum write_status to_bmp( FILE* out, const struct image* img ){
+enum write_status to_bmp( FILE* out, struct image* img ){
 
     struct bmp_header new_header = { 0 };
-    uint32_t padding, width, height, size_image, file_size = { 0 };
+    uint32_t padding, width, height, size_image, file_size = 0;
 
     padding = padding_calculate(img->width);
     struct pixel pad_byte = { 0, 0, 0 };
@@ -65,7 +65,7 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
 }
 
 void new_bmp_header( struct bmp_header* new_header, const struct image* img ){
-    uint32_t padding, width, height, size_image, file_size = { 0 };
+    uint32_t padding, width, height, size_image, file_size = 0;
 
     padding = padding_calculate( img->width );
 
