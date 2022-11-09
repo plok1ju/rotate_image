@@ -53,8 +53,6 @@ enum  write_status  {
 
 enum read_status from_bmp( FILE* in, struct image* img );
 
-struct bmp_header* new_bmp_header( const struct image* img );
-
 enum write_status to_bmp( FILE* out, struct image* img );
 
 #endif //UNTITLED3_BMP_H
