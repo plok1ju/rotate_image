@@ -50,6 +50,9 @@ int main( int argc, char** argv ) {
 
     }
 
+    image_free(&picture);
+    image_free(&flip_picture);
+
     fclose( new_file );
 
     return 0;
