@@ -1,5 +1,7 @@
 #include "../include/flip.h"
 #include "../include/bmp.h"
+#include "../include/utils.h"
+#include "../include/image.h"
 
 int main( int argc, char** argv ) {
     ( void ) argc; ( void ) argv;

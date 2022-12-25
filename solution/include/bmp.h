@@ -6,6 +6,8 @@
 
 #include "image.h"
 
+#include <stdint.h>
+#include <stdlib.h>
 #include <stdio.h>
 
 #pragma pack( push, 1 )
