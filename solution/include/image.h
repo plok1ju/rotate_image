@@ -22,7 +22,7 @@ enum image_status  {
 
 };
 
-enum new_image_status new_image( uint32_t width, uint32_t height, struct image* new_image );
+enum image_status new_image( uint32_t width, uint32_t height, struct image* new_image );
 
 void image_free( struct image* old_im );
 
