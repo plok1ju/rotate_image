@@ -35,8 +35,6 @@ int main( int argc, char** argv ) {
 
     }
 
-    fclose( file );
-
     new_file = fopen( output_file, "wb" );
     if( !new_file ){
         return 2;
@@ -54,6 +52,7 @@ int main( int argc, char** argv ) {
     image_free(&picture);
     image_free(&flip_picture);
 
+    fclose( file );
     fclose( new_file );
 
     return 0;

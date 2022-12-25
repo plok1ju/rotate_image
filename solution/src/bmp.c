@@ -52,19 +52,19 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
 
     enum write_status write_status_output_file_header = fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
     if ( write_status_output_file_header ){
-        return WRITE_ERROR_HEADER;
+        return WRITE_ERROR;
     }
 
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
         enum write_status write_status_output_file = fwrite( ( img->data + j * img->width ), sizeof( struct pixel ) * img->width, 1, out );
         if ( write_status_output_file ){
-            return WRITE_ERROR_FILE;
+            return WRITE_ERROR;
         }
 
         enum write_status write_status_output_file_byte = fwrite( &pad_byte, 1, padding, out );
         if ( write_status_output_file_byte ){
-            return WRITE_ERROR_BYTE;
+            return WRITE_ERROR;
         }
     }
 
