@@ -5,6 +5,7 @@
 #ifndef UNTITLED3_UTILS_H
 #define UNTITLED3_UTILS_H
 
+#include "bmp.h"
 #include <stdint.h>
 
 enum  args_status  {
