@@ -44,7 +44,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
 enum write_status to_bmp( FILE* out, const struct image* img ){
 
-    const char pad_byte[3] = { 0, 0, 0 };
+    const char pad_byte[3] = {0};
 
     struct bmp_header new_header = new_bmp_header( img->width, img->height );
 
