@@ -46,7 +46,10 @@ enum read_status  {
 enum  write_status  {
 
     WRITE_OK = 0,
-    WRITE_ERROR
+    WRITE_ERROR,
+    WRITE_ERROR_HEADER,
+    WRITE_ERROR_FILE,
+    WRITE_ERROR_BYTE
 
 };
 
