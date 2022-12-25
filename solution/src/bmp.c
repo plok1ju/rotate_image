@@ -16,7 +16,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
     uint32_t padding, width, height = 0;
 
     enum read_status read_status_input_file_headler =  fread( &header, sizeof( struct bmp_header ), 1, in );
-    if ( read_status_input_file_headler ){
+    if ( !read_status_input_file_headler ){
         return READ_INVALID_HEADER;
     }
 
@@ -31,7 +31,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
     for ( uint32_t i = 0; i < height; i = i + 1 ){
         enum read_status read_status_input_file = fread( ( img->data + i * width ), sizeof( struct pixel ) * width, 1, in );
-        if ( read_status_input_file ){
+        if ( !read_status_input_file ){
             return READ_INVALID_BITS;
         }
 
