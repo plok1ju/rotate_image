@@ -21,7 +21,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
     height = header.biHeight;
     padding = padding_calculate( width );
 
-    enum new_image_status now_image_status = new_image(width, height, img);
+    enum image_status now_image_status = new_image(width, height, img);
     if( now_image_status ){
         return READ_INVALID_IMAGE;
     }
@@ -39,9 +39,9 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
 }
 
-enum write_status to_bmp( FILE* out, struct image* img ){
+enum write_status to_bmp( FILE* out, const struct image* img ){
 
-    struct pixel pad_byte = { 0, 0, 0 };
+    const char pad_byte[3] = { 0, 0, 0 };
 
     struct bmp_header new_header = new_bmp_header( img->width, img->height );
 

@@ -15,10 +15,10 @@ struct image {
 
 };
 
-enum new_image_status  {
+enum image_status  {
 
-    NEW_IMAGE_OK = 0,
-    NEW_IMAGE_MALLOC_TROUBLE,
+    IMAGE_OK = 0,
+    IMAGE_MALLOC_TROUBLE,
 
 };
 
