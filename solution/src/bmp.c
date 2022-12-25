@@ -56,8 +56,6 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
         fwrite( &pad_byte, 1, padding, out );
     }
 
-    image_free( img );
-
     return WRITE_OK;
 
 }
