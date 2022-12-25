@@ -4,7 +4,7 @@
 
 #include "../include/image.h"
 
-enum image_status new_image( const uint32_t width, const uint32_t height, struct image* new_image ){
+enum new_image_status new_image( uint32_t width, uint32_t height, struct image* new_image ){
 
     new_image->data = malloc( sizeof ( struct pixel )*height*width );
 
@@ -12,11 +12,11 @@ enum image_status new_image( const uint32_t width, const uint32_t height, struct
 
         new_image->width = width;
         new_image->height = height;
-        return IMAGE_OK;
+        return NEW_IMAGE_OK;
 
     }
 
-    return IMAGE_MALLOC_TROUBLE;
+    return NEW_IMAGE_MALLOC_TROUBLE;
 
 }
 

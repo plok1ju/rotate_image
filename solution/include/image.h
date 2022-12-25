@@ -15,14 +15,14 @@ struct image {
 
 };
 
-enum image_status  {
+enum new_image_status  {
 
-    IMAGE_OK = 0,
-    IMAGE_MALLOC_TROUBLE,
+    NEW_IMAGE_OK = 0,
+    NEW_IMAGE_MALLOC_TROUBLE,
 
 };
 
-enum image_status new_image( const uint32_t width, const uint32_t height, struct image* new_image );
+enum new_image_status new_image( uint32_t width, uint32_t height, struct image* new_image );
 
 void image_free( struct image* old_im );
 

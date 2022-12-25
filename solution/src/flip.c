@@ -4,9 +4,9 @@
 
 #include "../include/flip.h"
 
-enum flip_status image_flip( const struct image* image, struct image* flip_image ){
+enum flip_status image_flip( struct image* image, struct image* flip_image ){
 
-    enum image_status status  = new_image( image->height, image->width, flip_image );
+    enum new_image_status status  = new_image( image->height, image->width, flip_image );
     if( status ){
         return FLIP_MALLOC_TROUBLE;
     }
@@ -23,6 +23,8 @@ enum flip_status image_flip( const struct image* image, struct image* flip_image
         }
 
     }
+
+    image_free( image );
 
     return SUCCESS_FLIP_IMAGE;
 
