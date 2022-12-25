@@ -5,7 +5,6 @@
 #ifndef UNTITLED3_BMP_H
 
 #include "image.h"
-#include "utils.h"
 
 #include <stdio.h>
 
