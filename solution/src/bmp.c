@@ -15,10 +15,7 @@ enum read_status from_bmp( FILE* in, struct image* img ){
 
     uint32_t padding, width, height = 0;
 
-    enum read_status read_status_input_file_headler =  fread( &header, sizeof( struct bmp_header ), 1, in );
-    if ( !read_status_input_file_headler ){
-        return READ_INVALID_HEADER;
-    }
+    fread( &header, sizeof( struct bmp_header ), 1, in );
 
     width = header.biWidth;
     height = header.biHeight;
@@ -30,8 +27,8 @@ enum read_status from_bmp( FILE* in, struct image* img ){
     }
 
     for ( uint32_t i = 0; i < height; i = i + 1 ){
-        enum read_status read_status_input_file = fread( ( img->data + i * width ), sizeof( struct pixel ) * width, 1, in );
-        if ( !read_status_input_file ){
+
+        if ( !( fread( ( img->data + i * width ), sizeof( struct pixel ) * width, 1, in ))){
             return READ_INVALID_BITS;
         }
 
@@ -50,22 +47,13 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
 
     uint32_t padding = padding_calculate(img->width );
 
-    enum write_status write_status_output_file_header = fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
-    if ( write_status_output_file_header ){
-        return WRITE_ERROR;
-    }
+    fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
 
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
-        enum write_status write_status_output_file = fwrite( ( img->data + j * img->width ), sizeof( struct pixel ) * img->width, 1, out );
-        if ( write_status_output_file ){
-            return WRITE_ERROR;
-        }
+        fwrite( ( img->data + j * img->width ), sizeof( struct pixel ) * img->width, 1, out );
 
-        enum write_status write_status_output_file_byte = fwrite( &pad_byte, 1, padding, out );
-        if ( write_status_output_file_byte ){
-            return WRITE_ERROR;
-        }
+        fwrite( &pad_byte, 1, padding, out );
     }
 
     return WRITE_OK;
