@@ -51,6 +51,9 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
     uint32_t padding = padding_calculate(img->width );
 
     fwrite(&new_header, sizeof( struct bmp_header ), 1, out );
+    if ( feof(out) ){
+        return WRITE_ERROR_HEADER;
+    }
 
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
