@@ -35,7 +35,9 @@ enum read_status from_bmp( FILE* in, struct image* img ){
             return READ_INVALID_BITS;
         }
 
-        fseek(in, padding, SEEK_CUR);
+        if (fseek(in, padding, SEEK_CUR)){
+            return READ_INVALID_FSEEK;
+        }
     }
 
     return READ_OK;
