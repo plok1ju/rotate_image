@@ -2,6 +2,7 @@
 // Created by Evdokiia Galkina on 10/24/22.
 //
 #include "../include/bmp.h"
+#include "../include/bmp_header.h"
 
 static uint32_t padding_calculate( const uint32_t width ){
 
