@@ -93,7 +93,7 @@ struct bmp_header new_bmp_header(uint32_t width, uint32_t height){
     new_header.bOffBits = 54;
     new_header.biSize = 40;
     new_header.biPlanes = 1;
-    new_header.biBitCount = width % 4;
+    new_header.biBitCount = 24;
     new_header.biCompression = 0;
     new_header.biXPelsPerMeter = 2834;
     new_header.biYPelsPerMeter = 2834;
