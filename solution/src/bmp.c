@@ -58,8 +58,14 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
     for ( uint32_t j = 0; j < img->height; j = j + 1 ){
 
         fwrite( ( img->data + j * img->width ), sizeof( struct pixel ) * img->width, 1, out );
+        if ( feof(out) ){
+            return WRITE_ERROR_FILE;
+        }
 
         fwrite( &pad_byte, 1, padding, out );
+        if ( feof(out) ){
+            return WRITE_ERROR_BYTE;
+        }
     }
 
     return WRITE_OK;
