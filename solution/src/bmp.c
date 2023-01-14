@@ -112,12 +112,13 @@ enum write_status to_bmp( FILE* out, const struct image* img ){
 
 }
 
-struct bmp_header new_bmp_header(uint32_t width, uint32_t height){
+struct bmp_header new_bmp_header( uint32_t width, uint32_t height ){
 
     struct bmp_header new_header;
-    uint32_t padding = padding_calculate(width );
+    uint32_t size_of_pixel = 3;
+    uint32_t padding = padding_calculate( width );
 
-    uint32_t size_image = 3 * height * width + width * padding;
+    uint32_t size_image = size_of_pixel * height * width + width * padding;
     uint32_t file_size = size_image + sizeof ( struct bmp_header );
 
     new_header.biHeight = height;
