@@ -4,6 +4,18 @@
 #include "../include/bmp.h"
 #include "../include/bmp_header.h"
 
+uint16_t BF_TYPE = 19778;
+uint32_t BF_RESERVED = 0;
+uint32_t B_OFF_BITS = 54;
+uint32_t BI_SIZE = 40;
+uint16_t BI_PLANES = 1;
+uint16_t BI_BIT_COUNT = 24;
+uint32_t BI_COMPRESSION = 0;
+uint32_t BI_X_PELS_PER_METER = 2834;
+uint32_t BI_Y_PELS_PER_METER = 2834;
+uint32_t BI_CLR_USED = 0;
+uint32_t BI_CLR_IMPORTANT = 0;
+
 #pragma pack( push, 1 )
 
 struct bmp_header
@@ -113,17 +125,17 @@ struct bmp_header new_bmp_header(uint32_t width, uint32_t height){
     new_header.biSizeImage = size_image;
     new_header.bfileSize = file_size;
 
-    new_header.bfType = 19778;
-    new_header.bfReserved = 0;
-    new_header.bOffBits = 54;
-    new_header.biSize = 40;
-    new_header.biPlanes = 1;
-    new_header.biBitCount = 24;
-    new_header.biCompression = 0;
-    new_header.biXPelsPerMeter = 2834;
-    new_header.biYPelsPerMeter = 2834;
-    new_header.biClrUsed = 0;
-    new_header.biClrImportant = 0;
+    new_header.bfType = BF_TYPE;
+    new_header.bfReserved = BF_RESERVED;
+    new_header.bOffBits = B_OFF_BITS;
+    new_header.biSize = BI_SIZE;
+    new_header.biPlanes = BI_PLANES;
+    new_header.biBitCount = BI_BIT_COUNT;
+    new_header.biCompression = BI_COMPRESSION;
+    new_header.biXPelsPerMeter = BI_X_PELS_PER_METER;
+    new_header.biYPelsPerMeter = BI_Y_PELS_PER_METER;
+    new_header.biClrUsed = BI_CLR_USED;
+    new_header.biClrImportant = BI_CLR_IMPORTANT;
 
 
     return new_header;
